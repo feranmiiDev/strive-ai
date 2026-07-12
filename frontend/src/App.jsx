@@ -525,7 +525,7 @@ function App() {
               </button>
               <span>•</span>
               <a 
-                href="https://github.com/pscarborough/strive-ai" 
+                href="https://github.com/feranmiiDev/strive-ai" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
