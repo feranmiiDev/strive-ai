@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academic Plan | AeroStudy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#d6e0f3",
+                    "on-primary-fixed": "#002113",
+                    "surface-tint": "#006c49",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "tertiary-container": "#9699ff",
+                    "surface-variant": "#f0f2f0",
+                    "secondary-fixed": "#d9e3f6",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bbcabf",
+                    "on-surface": "#1a1c1a",
+                    "on-primary-fixed-variant": "#005236",
+                    "surface-container": "#f8faf8",
+                    "on-primary-container": "#ffffff",
+                    "on-tertiary-container": "#1d17b2",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary-fixed": "#e1e0ff",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#4edea3",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#596373",
+                    "secondary": "#555f6f",
+                    "surface-container-high": "#e6e8ea",
+                    "on-surface-variant": "#444944",
+                    "surface-dim": "#d8dadc",
+                    "outline": "#6c7a71",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#121c2a",
+                    "primary-container": "#10b981",
+                    "background": "#f0f4f2",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#006c49",
+                    "surface": "#f7f9fb",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "tertiary": "#494bd6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "section-gap": "64px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["13px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    font-family: "Hanken Grotesk", sans-serif;
+    background-color: #f0f4f2;
+    overflow-x: hidden
+    }
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 108, 73, 0.05)
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%
+    }
+.bg-gradient-emerald {
+    background: linear-gradient(135deg, #006c49 0%, #10b981 100%)
+    }
+/* Aesthetic background derived from IMAGE_8 style */
+.academic-bg {
+    background-image: radial-gradient(circle at 10% 20%, rgba(0, 108, 73, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCbhAfCMpF6Ye9t-00NBdG-s57Sdjj2bGMu6_NUhbB6NPqYzNumwmnxF9B2b2vhWPMXfih6BNNEP1vgwcGAyq3KHEmZMzCJBQ1dSf_cXj6j32K8_buBLe73NmE7vWPTA8GxKIUURW4e4WQjT2YfY4RcZUK8ekUYpysJPiJVAc6g5PcklNafVaNE_n3-ke5ZwcxASr98lgVj-taJnByaCM9d1HaDheiN7Ih2-6J6m6Ec2jeO3_Ny197G4xhoJWZBQRWC2ZkyR47Jj40);
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay
+    }</style>
+</head>
+<body class="text-on-surface academic-bg">
+<!-- Top Navigation Shell -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-margin-desktop py-4 w-full backdrop-blur-xl bg-white/70 border-b border-white/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-headline-lg cursor-pointer">menu</span>
+<span class="font-display-lg text-title-md text-primary tracking-tight font-bold">AeroStudy</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8">
+<span class="text-on-surface-variant font-medium hover:text-primary transition-colors cursor-pointer px-3 py-1">Dashboard</span>
+<span class="text-primary font-bold border-b-2 border-primary cursor-pointer px-3 py-1">Academic Plan</span>
+<span class="text-on-surface-variant font-medium hover:text-primary transition-colors cursor-pointer px-3 py-1">Performance</span>
+<span class="text-on-surface-variant font-medium hover:text-primary transition-colors cursor-pointer px-3 py-1">Study Resources</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">search</span>
+<div class="relative cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border border-white"></span>
+</div>
+<div class="w-9 h-9 rounded-full border-2 border-primary/20 p-0.5">
+<img alt="Student Profile" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNxM6xSE6jOZpqlvkg-eyouIh1d4MuHuwfz1us0P7uRajziV7Yd02ReMygn_8VLBBGQQWeTVfw7_Zoq-4wm2-6fbNP9HVjpoxF8eJHLvQ1MlAV1F1p3QFVUBGkoDTHWTXsp5iYTqAeiItJYRe7rXz7S9BswsdYNLLWTv8s42tWwfYuaqE3a5EF7PN8zaEtd0CjRxy0XNVI7jI7x2Xgp2TWiTREnxEDeU7y17Fe_hkIi21HsGpC-rKlbLZva-lOszLb2RSScL-rLPo"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex min-h-screen">
+<!-- Side Navigation (Web) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 pt-24 pb-8 px-6 space-y-8 bg-white/20 backdrop-blur-3xl border-r border-white/30 z-40">
+<div class="space-y-1">
+<p class="text-primary font-label-sm uppercase tracking-widest px-4 mb-4 font-bold opacity-70">Main Menu</p>
+<div class="group flex items-center gap-4 p-4 hover:bg-white/40 rounded-2xl transition-all duration-200 cursor-pointer text-secondary hover:text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-title-md">Dashboard</span>
+</div>
+<div class="group flex items-center gap-4 p-4 bg-primary text-white shadow-lg shadow-primary/20 rounded-2xl font-semibold cursor-pointer">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-title-md">Academic Plan</span>
+</div>
+<div class="group flex items-center gap-4 p-4 hover:bg-white/40 rounded-2xl transition-all duration-200 cursor-pointer text-secondary hover:text-primary">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-title-md">Performance</span>
+</div>
+<div class="group flex items-center gap-4 p-4 hover:bg-white/40 rounded-2xl transition-all duration-200 cursor-pointer text-secondary hover:text-primary">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-title-md">Study Resources</span>
+</div>
+</div>
+<div class="mt-auto space-y-1 pt-8 border-t border-primary/10">
+<div class="group flex items-center gap-4 p-4 hover:bg-white/40 rounded-2xl transition-all duration-200 cursor-pointer text-secondary hover:text-primary">
+<span class="material-symbols-outlined">person</span>
+<span class="font-title-md">Profile Settings</span>
+</div>
+<div class="group flex items-center gap-4 p-4 hover:bg-error/10 rounded-2xl transition-all duration-200 cursor-pointer text-error">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-title-md">Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Content Canvas -->
+<section class="flex-1 md:ml-64 px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2 tracking-tight">Academic Plan</h1>
+<div class="flex items-center gap-2">
+<span class="w-8 h-1 bg-primary rounded-full"></span>
+<p class="text-on-surface-variant font-body-lg font-medium">Spring Semester 2024 • Year 3 Undergraduate</p>
+</div>
+</div>
+<button class="bg-gradient-emerald text-white font-bold px-8 py-4 rounded-2xl flex items-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                    Add Goal
+                </button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Course List Section -->
+<div class="md:col-span-8 grid grid-cols-1 gap-8">
+<!-- Course Card: Advanced Thermodynamics -->
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 transition-all hover:translate-y-[-8px] hover:bg-white/90 group">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-sm font-bold">CORE-302</span>
+<span class="text-on-surface-variant font-label-sm font-medium">• 4 Credits</span>
+</div>
+<h3 class="font-headline-lg text-on-surface mb-6 group-hover:text-primary transition-colors">Advanced Thermodynamics</h3>
+<div class="flex flex-wrap gap-8">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Attendance</span>
+<span class="font-title-md text-primary font-bold">94%</span>
+</div>
+<div class="w-[1px] bg-primary/20 h-10"></div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Current Grade</span>
+<span class="font-title-md text-primary font-bold">A- (91.4%)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-3 min-w-[140px] bg-primary/5 rounded-3xl p-6">
+<div class="relative w-24 h-24">
+<svg class="w-24 h-24">
+<circle class="text-primary/10 stroke-current" cx="48" cy="48" fill="transparent" r="42" stroke-width="6"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="48" cy="48" fill="transparent" r="42" stroke-dasharray="263.9" stroke-dashoffset="52" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-primary">80%</div>
+</div>
+<span class="font-label-sm text-on-surface-variant font-semibold">Progress</span>
+</div>
+</div>
+<!-- Course Card: Quantum Mechanics -->
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 transition-all hover:translate-y-[-8px] hover:bg-white/90 group">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-sm font-bold">PHYS-411</span>
+<span class="text-on-surface-variant font-label-sm font-medium">• 4 Credits</span>
+</div>
+<h3 class="font-headline-lg text-on-surface mb-6 group-hover:text-primary transition-colors">Quantum Mechanics I</h3>
+<div class="flex flex-wrap gap-8">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Attendance</span>
+<span class="font-title-md text-primary font-bold">88%</span>
+</div>
+<div class="w-[1px] bg-primary/20 h-10"></div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Current Grade</span>
+<span class="font-title-md text-primary font-bold">B+ (87.2%)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-3 min-w-[140px] bg-primary/5 rounded-3xl p-6">
+<div class="relative w-24 h-24">
+<svg class="w-24 h-24">
+<circle class="text-primary/10 stroke-current" cx="48" cy="48" fill="transparent" r="42" stroke-width="6"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="48" cy="48" fill="transparent" r="42" stroke-dasharray="263.9" stroke-dashoffset="145" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-primary">45%</div>
+</div>
+<span class="font-label-sm text-on-surface-variant font-semibold">Progress</span>
+</div>
+</div>
+<!-- Course Card: Professional Ethics -->
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 transition-all hover:translate-y-[-8px] hover:bg-white/90 group">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-sm font-bold">HUM-210</span>
+<span class="text-on-surface-variant font-label-sm font-medium">• 2 Credits</span>
+</div>
+<h3 class="font-headline-lg text-on-surface mb-6 group-hover:text-primary transition-colors">Professional Ethics</h3>
+<div class="flex flex-wrap gap-8">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Attendance</span>
+<span class="font-title-md text-primary font-bold">100%</span>
+</div>
+<div class="w-[1px] bg-primary/20 h-10"></div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter opacity-70">Current Grade</span>
+<span class="font-title-md text-primary font-bold">A (96.0%)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-3 min-w-[140px] bg-primary/5 rounded-3xl p-6">
+<div class="relative w-24 h-24">
+<svg class="w-24 h-24">
+<circle class="text-primary/10 stroke-current" cx="48" cy="48" fill="transparent" r="42" stroke-width="6"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="48" cy="48" fill="transparent" r="42" stroke-dasharray="263.9" stroke-dashoffset="26" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-primary">90%</div>
+</div>
+<span class="font-label-sm text-on-surface-variant font-semibold">Progress</span>
+</div>
+</div>
+</div>
+<!-- Sidebar / Milestone Section -->
+<div class="md:col-span-4 space-y-gutter">
+<!-- GPA Summary Card -->
+<div class="glass-panel p-10 rounded-[2rem] text-center border-t-4 border-t-primary bg-white/80">
+<span class="text-primary font-label-sm uppercase tracking-[0.2em] block mb-4 font-bold">Cumulative GPA</span>
+<div class="font-display-lg text-[72px] leading-none text-on-surface mb-4">3.88</div>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+0.12 this term</span>
+</div>
+</div>
+<!-- Personal Milestones Card -->
+<div class="glass-panel p-8 rounded-[2rem] bg-white/60">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-title-md text-on-surface font-bold">Milestones</h3>
+<button class="p-2 hover:bg-primary/10 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-primary">more_horiz</span>
+</button>
+</div>
+<div class="space-y-8">
+<!-- Milestone 1 -->
+<div class="flex gap-4 relative">
+<div class="absolute left-2.5 top-8 bottom-0 w-[1px] bg-primary/20"></div>
+<div class="mt-1 w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center bg-white z-10">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-bold">Complete Thesis Proposal</p>
+<p class="text-on-surface-variant font-label-sm mb-3">Due March 15</p>
+<div class="w-full bg-primary/10 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary w-3/4 h-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex gap-4 relative">
+<div class="absolute left-2.5 top-8 bottom-0 w-[1px] bg-primary/20"></div>
+<div class="mt-1 w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center bg-white z-10"></div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-bold opacity-70">Apply for Internship</p>
+<p class="text-on-surface-variant font-label-sm">Due April 02</p>
+</div>
+</div>
+<!-- Milestone 3 (Completed) -->
+<div class="flex gap-4">
+<div class="mt-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/20 z-10">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface font-bold line-through opacity-40">Midterm Review Session</p>
+<p class="text-on-surface-variant font-label-sm opacity-50">Completed Feb 20</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Focus Prompt -->
+<div class="bg-gradient-emerald rounded-[2rem] p-8 text-white shadow-2xl shadow-primary/20 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-title-md font-bold">Deep Work Session?</span>
+</div>
+<p class="text-white/80 font-body-md mb-8">Alex, you have 2 assignments due soon. Let's block distractions and get ahead.</p>
+<button class="w-full bg-white text-primary font-bold py-4 rounded-2xl hover:bg-white/90 transition-all shadow-lg active:scale-[0.98]">
+                                Launch Focus Mode
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t-0 py-4 px-6 flex justify-between items-center z-50 rounded-t-[2rem]">
+<div class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_note</span>
+<span class="text-[10px] font-bold mt-1">Plan</span>
+</div>
+<div class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] font-bold mt-1">Stats</span>
+</div>
+<div class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold mt-1">Profile</span>
+</div>
+</nav>
+<!-- FAB (Contextual) -->
+<button class="md:hidden fixed bottom-28 right-6 w-16 h-16 bg-gradient-emerald text-white rounded-2xl shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[32px] font-bold">add</span>
+</button>
+<script>
+        // Simple Interaction: Hover effect enhancements for weightless feel
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panel.style.transform = 'translateY(-4px)';
+                panel.style.boxShadow = '0 20px 40px rgba(0, 108, 73, 0.08)';
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.style.transform = 'translateY(0)';
+                panel.style.boxShadow = '0 8px 32px 0 rgba(0, 108, 73, 0.05)';
+            });
+        });
+    </script>
+</body></html>

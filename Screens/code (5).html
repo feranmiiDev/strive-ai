@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroStudy | Personal Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#f0f4f2",
+                        "on-primary-fixed": "#002113",
+                        "surface-tint": "#006c49",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "tertiary-container": "#9699ff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed": "#d9e3f6",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bbcabf",
+                        "on-surface": "#191c1e",
+                        "on-primary-fixed-variant": "#005236",
+                        "surface-container": "#eceef0",
+                        "on-primary-container": "#00422b",
+                        "on-tertiary-container": "#1d17b2",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#e1e0ff",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#4edea3",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#596373",
+                        "secondary": "#555f6f",
+                        "surface-container-high": "#f0f4f3",
+                        "on-surface-variant": "#3c4a42",
+                        "surface-dim": "#d8dadc",
+                        "outline": "#6c7a71",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#121c2a",
+                        "primary-container": "#10b981",
+                        "background": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#006c49",
+                        "surface": "#f7f9fb",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed": "#07006c",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "tertiary": "#494bd6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "section-gap": "64px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["13px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 20px 40px rgba(0, 108, 73, 0.05);
+        }
+
+        .floating-anim {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .bg-academic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.12;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(20%);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .chart-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s ease-in-out forwards;
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 108, 73, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Emerald Accents from reference */
+        .emerald-gradient {
+            background: linear-gradient(135deg, #006c49 0%, #10b981 100%);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Background Layer - Academic Theme -->
+<div class="bg-academic" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAl150zTLn8i6uRD13TE6BxIAggGDWhK6uMaGtFc9t5L2dyku0cydNV9JMJyG7Xh4uRG0TVXpQ5wG3hEyrsIC9GTOzdLuDAIgSngkvJP2yFuF4xCf7Wc31O4uYmdc30fHmQWpfqcsv3ZuNSaN6YS0J165ZrwMdemK_xRXN8aBtSIjijvuiCMYSxbtntjFj8hg3HostDYnCSgnXfdTH4lVMeShH5bvCUv_ljKo_IY3G2AR4JXb7cR8nj3jTBdo2e9LmgDQnFI8ZYhR4')"></div>
+<!-- Side Navigation Bar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-white/60 backdrop-blur-3xl border-r border-white/50 flex flex-col p-6 space-y-8 z-40 hidden md:flex">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+<h1 class="font-display-lg text-headline-lg text-primary tracking-tight">AeroStudy</h1>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="group cursor-pointer flex items-center gap-4 p-3 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-title-md text-title-md">Dashboard</span>
+</a>
+<a class="group cursor-pointer flex items-center gap-4 p-3 text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-title-md text-title-md">Academic Plan</span>
+</a>
+<a class="group cursor-pointer flex items-center gap-4 p-3 text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-title-md text-title-md">Performance</span>
+</a>
+<a class="group cursor-pointer flex items-center gap-4 p-3 text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-title-md text-title-md">Study Resources</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-primary/10 space-y-2">
+<div class="flex items-center gap-3 mb-6 px-3 bg-white/40 p-2 rounded-2xl">
+<img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDecBNF812UjuNXzXBsJowkYpGU3vSKFPOGpBwmE3kbY95Ih3_HIgH_2gR6WJ0m_BMTVZbSHHNveia4i_CQAd7Kx-rVnlgf65LHid5pvzpw7yx5bvLjyykHEFUaNX5dVEWQcN3vytCNqCYZ5KVd0jBeiHBhAPQDhevYRhkntVaZwnvvv3l8J2pje2tZXUJS3Fqy60YxesFGdkUSqvb5jfXNb_8KeXVL6LJeHefO0Mg1KuiybwLsQ6SmOKqzUbGazEi7rrU-NgiG4Cc"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Alex Mercer</p>
+<p class="text-xs text-primary font-medium">Premium Plan</p>
+</div>
+</div>
+<a class="group cursor-pointer flex items-center gap-4 p-3 text-secondary hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-title-md text-title-md text-sm">Profile Settings</span>
+</a>
+<a class="group cursor-pointer flex items-center gap-4 p-3 text-secondary hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-title-md text-title-md text-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen px-margin-mobile md:px-margin-desktop py-8">
+<!-- Top App Bar -->
+<header class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+<div>
+<p class="text-primary font-bold mb-1 flex items-center gap-2 uppercase tracking-widest text-xs">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                Monday, October 23
+            </p>
+<h2 class="font-display-lg text-display-lg text-on-surface">Welcome back, Alex</h2>
+<p class="text-secondary font-body-lg">Your focus session awaits. You've completed 85% of this week's goals.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary" data-icon="search">search</span>
+</button>
+<button class="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all relative group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<button class="flex items-center gap-3 emerald-gradient text-white px-8 py-3.5 rounded-full font-bold shadow-xl shadow-primary/20 hover:scale-[1.03] transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Start Deep Work
+            </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Projected GPA Card -->
+<section class="md:col-span-8 glass-panel p-10 rounded-[2.5rem] flex flex-col justify-between min-h-[440px]">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-2 text-on-surface">Projected GPA</h3>
+<p class="text-secondary font-body-md max-w-xs">Based on your current performance across 5 courses.</p>
+</div>
+<div class="text-right">
+<span class="text-7xl font-display-lg text-primary tracking-tighter">3.92</span>
+<p class="text-primary font-bold flex items-center justify-end gap-1 mt-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +0.04
+                    </p>
+</div>
+</div>
+<!-- Performance Chart -->
+<div class="relative w-full h-56 mt-auto">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,180 Q100,160 200,170 T400,120 T600,80 T800,40 L800,200 L0,200 Z" fill="url(#chartGradient)"></path>
+<path class="chart-path" d="M0,180 Q100,160 200,170 T400,120 T600,80 T800,40" fill="none" stroke="#006c49" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="200" cy="170" fill="#10b981" r="6" stroke="white" stroke-width="2"></circle>
+<circle cx="400" cy="120" fill="#10b981" r="6" stroke="white" stroke-width="2"></circle>
+<circle cx="600" cy="80" fill="#10b981" r="6" stroke="white" stroke-width="2"></circle>
+<circle cx="800" cy="40" fill="#006c49" r="9" stroke="white" stroke-width="3"></circle>
+</svg>
+<div class="absolute bottom-0 left-0 w-full flex justify-between text-[11px] text-secondary font-bold uppercase tracking-wider px-2 pt-6">
+<span>WK 1</span><span>WK 3</span><span>WK 5</span><span>WK 7</span><span class="text-primary">Current</span>
+</div>
+</div>
+</section>
+<!-- Next Session Widget -->
+<section class="md:col-span-4 glass-panel p-10 rounded-[2.5rem] flex flex-col justify-between border-primary/5">
+<div>
+<div class="flex items-center gap-3 mb-8">
+<span class="bg-primary text-white p-2.5 rounded-xl material-symbols-outlined shadow-lg shadow-primary/20" data-icon="alarm" style="font-variation-settings: 'wght' 600;">alarm</span>
+<span class="text-primary font-extrabold uppercase tracking-[0.2em] text-xs">Next Session</span>
+</div>
+<h3 class="font-headline-lg text-3xl leading-tight mb-3">Macroeconomics 301</h3>
+<p class="text-secondary font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">room</span>
+                    Levin Hall, Room 402
+                </p>
+</div>
+<div class="mt-10">
+<div class="flex items-baseline gap-1 mb-5">
+<span class="text-6xl font-display-lg text-on-surface" id="countdown">14:52</span>
+<span class="text-secondary font-bold text-sm uppercase">mins</span>
+</div>
+<div class="w-full h-3 bg-secondary/10 rounded-full overflow-hidden">
+<div class="h-full emerald-gradient w-3/4 rounded-full"></div>
+</div>
+</div>
+<button class="w-full mt-8 py-4 rounded-2xl border-2 border-primary/10 text-primary font-bold hover:bg-white hover:border-primary/30 transition-all">
+                View Course Details
+            </button>
+</section>
+<!-- Daily Focus Card -->
+<section class="md:col-span-7 glass-panel p-10 rounded-[2.5rem]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline-lg text-headline-lg">Daily Focus</h3>
+<button class="bg-primary/5 text-primary px-5 py-2.5 rounded-full font-bold flex items-center gap-2 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Add Task
+                </button>
+</div>
+<div class="space-y-5">
+<!-- Task Items with emerald accents -->
+<div class="flex items-center gap-5 p-5 rounded-3xl hover:bg-white/60 transition-all group cursor-pointer border border-transparent hover:border-white">
+<div class="w-7 h-7 border-2 border-primary/30 rounded-lg flex items-center justify-center transition-all group-hover:border-primary"></div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface text-lg">Submit Advanced Calculus Problem Set</h4>
+<p class="text-sm text-secondary">Due by 11:59 PM today</p>
+</div>
+<span class="bg-red-50 text-red-600 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider border border-red-100">High Priority</span>
+</div>
+<div class="flex items-center gap-5 p-5 rounded-3xl hover:bg-white/60 transition-all group cursor-pointer border border-transparent hover:border-white">
+<div class="w-7 h-7 border-2 border-primary/30 rounded-lg flex items-center justify-center transition-all group-hover:border-primary"></div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface text-lg">Pre-read Lecture Notes: Corporate Finance</h4>
+<p class="text-sm text-secondary">Estimated 45 mins</p>
+</div>
+<span class="bg-primary/5 text-primary px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider border border-primary/10">Study</span>
+</div>
+<div class="flex items-center gap-5 p-5 rounded-3xl hover:bg-white/30 transition-all group opacity-50">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface text-lg line-through">Draft Ethics Essay Introduction</h4>
+<p class="text-sm text-secondary">Completed at 09:15 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Focus Timer Circle -->
+<section class="md:col-span-5 glass-panel p-10 rounded-[2.5rem] flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/[0.02] pointer-events-none"></div>
+<div class="relative z-10 text-center w-full">
+<h3 class="text-[11px] font-extrabold uppercase tracking-[0.3em] text-secondary mb-10">Current Deep Work Streak</h3>
+<div class="relative inline-flex items-center justify-center">
+<svg class="w-56 h-56 transform -rotate-90">
+<circle class="text-primary/10" cx="112" cy="112" fill="transparent" r="100" stroke="currentColor" stroke-width="10"></circle>
+<circle class="text-primary transition-all duration-1000" cx="112" cy="112" fill="transparent" r="100" stroke="currentColor" stroke-dasharray="628.32" stroke-dashoffset="157.08" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-6xl font-display-lg text-on-surface">42</span>
+<span class="text-[11px] font-extrabold text-secondary uppercase tracking-widest mt-1">Mins Total</span>
+</div>
+</div>
+<div class="mt-10 flex gap-4 justify-center">
+<div class="bg-white p-4 rounded-3xl flex flex-col items-center min-w-[100px] shadow-sm border border-primary/5">
+<span class="text-xl font-bold text-primary">03</span>
+<span class="text-[10px] text-secondary font-extrabold uppercase tracking-wider">Sessions</span>
+</div>
+<div class="bg-white p-4 rounded-3xl flex flex-col items-center min-w-[100px] shadow-sm border border-primary/5">
+<span class="text-xl font-bold text-primary">2.4k</span>
+<span class="text-[10px] text-secondary font-extrabold uppercase tracking-wider">Focus Pts</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Mobile Nav -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] glass-panel rounded-full p-2.5 flex justify-around items-center z-50 shadow-2xl border-white">
+<a class="p-3.5 bg-primary text-white rounded-full shadow-lg shadow-primary/30" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</a>
+<a class="p-3.5 text-secondary hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+</a>
+<a class="p-3.5 text-secondary hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+</a>
+<a class="p-3.5 text-secondary hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+<script>
+    // Countdown logic
+    let minutes = 14;
+    let seconds = 52;
+    const countdownEl = document.getElementById('countdown');
+
+    setInterval(() => {
+        if (seconds > 0) {
+            seconds--;
+        } else {
+            if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            }
+        }
+        countdownEl.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+
+    // Dynamic glass tilt effect
+    document.querySelectorAll('.glass-panel').forEach(panel => {
+        panel.addEventListener('mousemove', (e) => {
+            const rect = panel.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 30;
+            const rotateY = (centerX - x) / 30;
+            
+            panel.style.transform = `perspective(1000px) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        panel.addEventListener('mouseleave', () => {
+            panel.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+        });
+    });
+</script>
+</body></html>
