@@ -1270,17 +1270,6 @@ function App() {
                     <h3>Simulated Outcome</h3>
                   </div>
 
-                  <div className="simulated-gpa-gauge-box">
-                    <div className="sim-gpa-circular-indicator">
-                      <span className="sim-gpa-gauge-title">Confidence Level</span>
-                      <span className="sim-gpa-gauge-value">
-                        {results && results.results.length > 0
-                          ? `${Math.round(results.results.reduce((acc, curr) => acc + curr.predicted_score, 0) / results.results.length)}%`
-                          : '71%'}
-                      </span>
-                    </div>
-                  </div>
-
                   <div className="sim-outcome-breakdown">
                     <h4>Course Summary Details</h4>
                     <div className="sim-summary-table-container">
@@ -1289,7 +1278,7 @@ function App() {
                           <tr>
                             <th>Subject</th>
                             <th>Grade</th>
-                            <th>Simulated GPA</th>
+                            <th>Confidence Level</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -1303,7 +1292,7 @@ function App() {
                                     {res.grade}
                                   </span>
                                 </td>
-                                <td>{res.grade_point.toFixed(2)} GP</td>
+                                <td><strong>{Math.round(res.predicted_score)}%</strong></td>
                               </tr>
                             );
                           })}
