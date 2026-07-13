@@ -130,6 +130,11 @@ function App() {
     }
   }, []);
 
+  // Scroll window to top whenever active tab changes to reset scroll position from long forms
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeTab]);
+
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
