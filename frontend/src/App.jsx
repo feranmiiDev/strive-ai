@@ -35,12 +35,14 @@ function App() {
   const [targetGpa, setTargetGpa] = useState(4.5);
   const [isGoalCommitted, setIsGoalCommitted] = useState(false);
 
+  // Responsive Sidebar Toggle State
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   // Academic Course Entries State (CSC 401, MAT 302, ENG 210 matching the image)
   const [courses, setCourses] = useState([
     {
       course_name: 'CSC 401: Intro to AI',
       hours_studied: 18,
-      previous_scores: 75,
       extracurricular: 0,
       sleep_hours: 7.0,
       course_difficulty: 2,
@@ -53,7 +55,6 @@ function App() {
     {
       course_name: 'MAT 302: Advanced Calculus',
       hours_studied: 8,
-      previous_scores: 80,
       extracurricular: 0,
       sleep_hours: 6.5,
       course_difficulty: 3,
@@ -66,7 +67,6 @@ function App() {
     {
       course_name: 'ENG 210: Tech Writing',
       hours_studied: 6,
-      previous_scores: 85,
       extracurricular: 1,
       sleep_hours: 8.0,
       course_difficulty: 1,
@@ -246,7 +246,6 @@ function App() {
       {
         course_name: '',
         hours_studied: 6,
-        previous_scores: 70,
         extracurricular: 0,
         sleep_hours: 7,
         course_difficulty: 2,
@@ -331,7 +330,6 @@ function App() {
       const recordsPayload = results.results.map((res, i) => ({
         course_name: res.course_name,
         hours_studied: courses[i]?.hours_studied || 0,
-        previous_scores: courses[i]?.previous_scores || 0,
         extracurricular: courses[i]?.extracurricular || 0,
         sleep_hours: courses[i]?.sleep_hours || 0,
         course_difficulty: courses[i]?.course_difficulty || 1,
@@ -611,7 +609,7 @@ function App() {
   return (
     <div className="app-shell">
       {/* 1. LEFT SIDEBAR NAVIGATION */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-brand">
           <div className="brand-logo-box">
             {/* Custom S-like Logo matching screenshot */}
@@ -625,12 +623,14 @@ function App() {
           <div className="brand-texts">
             <h2>Strive.ai</h2>
           </div>
+          {/* Close button on mobile side nav */}
+          <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)} aria-label="Close Navigation">&times;</button>
         </div>
 
         <nav className="sidebar-nav">
           <button 
             className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => { setActiveTab('dashboard'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <rect x="3" y="3" width="7" height="9"></rect>
@@ -644,7 +644,7 @@ function App() {
           
           <button 
             className={`nav-item ${activeTab === 'curriculum' ? 'active' : ''}`}
-            onClick={() => setActiveTab('curriculum')}
+            onClick={() => { setActiveTab('curriculum'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -656,7 +656,7 @@ function App() {
 
           <button 
             className={`nav-item ${activeTab === 'simulations' ? 'active' : ''}`}
-            onClick={() => setActiveTab('simulations')}
+            onClick={() => { setActiveTab('simulations'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
@@ -667,7 +667,7 @@ function App() {
 
           <button 
             className={`nav-item ${activeTab === 'recommendations' ? 'active' : ''}`}
-            onClick={() => setActiveTab('recommendations')}
+            onClick={() => { setActiveTab('recommendations'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -678,7 +678,7 @@ function App() {
 
           <button 
             className={`nav-item ${activeTab === 'goal' ? 'active' : ''}`}
-            onClick={() => setActiveTab('goal')}
+            onClick={() => { setActiveTab('goal'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <circle cx="12" cy="12" r="10"></circle>
@@ -690,7 +690,7 @@ function App() {
 
           <button 
             className={`nav-item ${activeTab === 'profile' ? 'active' : ''}`}
-            onClick={() => setActiveTab('profile')}
+            onClick={() => { setActiveTab('profile'); setSidebarOpen(false); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -702,7 +702,7 @@ function App() {
         </nav>
 
         <div className="sidebar-footer">
-          <button onClick={handleLogout} className="sidebar-link-btn logout-red">
+          <button onClick={() => { handleLogout(); setSidebarOpen(false); }} className="sidebar-link-btn logout-red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>
@@ -713,11 +713,27 @@ function App() {
         </div>
       </aside>
 
+      {/* Sidebar Overlay backdrop for mobile */}
+      {sidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>
+      )}
+
       {/* 2. MAIN WORKSPACE */}
       <main className="content-pane">
         
         <header className="main-header">
-          <div className="header-titles">
+          <div className="header-titles-with-toggle">
+            <button 
+              className="navbar-toggle-btn"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle Navigation"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
             <h1>{activeTab === 'dashboard' ? 'Dashboard' : activeTab === 'curriculum' ? 'My Courses' : activeTab === 'simulations' ? 'Simulations Sandbox' : activeTab === 'recommendations' ? 'AI Recommendations' : activeTab === 'goal' ? 'Goal Setting' : 'Account Settings'}</h1>
           </div>
           
@@ -1059,17 +1075,7 @@ function App() {
                         </select>
                       </div>
 
-                      <div className="form-group">
-                        <label>Previous Score (0-100)</label>
-                        <input
-                          type="number"
-                          min="0"
-                          max="100"
-                          value={course.previous_scores}
-                          onChange={(e) => handleInputChange(index, 'previous_scores', e.target.value)}
-                          required
-                        />
-                      </div>
+
 
                       <div className="form-group">
                         <label>Attendance %</label>

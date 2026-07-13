@@ -163,7 +163,6 @@ def generate_recommendation(
 
 def predict_course_performance(
     hours_studied: float,
-    previous_scores: float,
     extracurricular: int,
     sleep_hours: float,
     course_difficulty: int,
@@ -195,7 +194,6 @@ def predict_course_performance(
     # 3. Create the feature input DataFrame in the exact order the models expect
     input_data = pd.DataFrame([{
         "hours_studied": hours_studied,
-        "previous_scores": previous_scores,
         "extracurricular": extracurricular,
         "sleep_hours": sleep_hours,
         "course_difficulty": course_difficulty,

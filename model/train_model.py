@@ -16,7 +16,6 @@ n = 10000
 
 df = pd.DataFrame()
 df['hours_studied'] = np.random.randint(0, 13, size=n)  # 0-12 hrs/week
-df['previous_scores'] = np.random.randint(30, 101, size=n) # prior semester avg
 df['extracurricular'] = np.random.randint(0, 2, size=n)  # 0=No, 1=Yes
 df['sleep_hours'] = np.random.randint(3, 11, size=n)  # 3-10 hrs
 df['course_difficulty'] = np.random.randint(1, 4, size=n) # 1=Easy,2=Medium,3=Hard
@@ -34,11 +33,10 @@ df['ca_score'] = (midterm_score + assignment_score + quiz_score + attendance_mar
 noise = np.random.normal(0, 5, size=n)  # realistic randomness
 
 df['performance_index'] = (
-    0.40 * df['ca_score'] +
-    0.30 * df['previous_scores'] +
-    3.0 * df['hours_studied'] +
-    1.0 * df['sleep_hours'] +
-    2.0 * df['extracurricular'] -
+    0.60 * df['ca_score'] +
+    3.5 * df['hours_studied'] +
+    1.2 * df['sleep_hours'] +
+    2.2 * df['extracurricular'] -
     5.0 * (df['course_difficulty'] - 1) +
     noise
 )
@@ -133,22 +131,22 @@ print("All 4 models trained successfully!")
 rf_reg_pred = rf_reg.predict(X_test_reg_scaled)
 xgb_reg_pred = xgb_reg.predict(X_test_reg_scaled)
 print("=== REGRESSION RESULTS ===")
-print(f"Random Forest → MAE: {mean_absolute_error(y_test_reg, rf_reg_pred):.2f}, R²: {r2_score(y_test_reg, rf_reg_pred):.4f}")
-print(f"XGBoost       → MAE: {mean_absolute_error(y_test_reg, xgb_reg_pred):.2f}, R²: {r2_score(y_test_reg, xgb_reg_pred):.4f}")
+print(f"Random Forest -> MAE: {mean_absolute_error(y_test_reg, rf_reg_pred):.2f}, R2: {r2_score(y_test_reg, rf_reg_pred):.4f}")
+print(f"XGBoost       -> MAE: {mean_absolute_error(y_test_reg, xgb_reg_pred):.2f}, R2: {r2_score(y_test_reg, xgb_reg_pred):.4f}")
 
 # Evaluate classification models
 rf_clf_pred = rf_clf.predict(X_test_clf_scaled)
 xgb_clf_pred = xgb_clf.predict(X_test_clf_scaled)
 
-# print("Random Forest:")
-# print(classification_report(y_test_clf, rf_clf_pred, target_names=['Low Risk', 'Medium Risk', 'High Risk']))
-# print("XGBoost:")
-# print(classification_report(y_test_clf, xgb_clf_pred, target_names=['Low Risk', 'Medium Risk', 'High Risk']))
+print("Random Forest:")
+print(classification_report(y_test_clf, rf_clf_pred, target_names=['Low Risk', 'Medium Risk', 'High Risk']))
+print("XGBoost:")
+print(classification_report(y_test_clf, xgb_clf_pred, target_names=['Low Risk', 'Medium Risk', 'High Risk']))
 
-# print("Random Forest Confusion Matrix:")
-# print(confusion_matrix(y_test_clf, rf_clf_pred))
-# print("XGBoost Confusion Matrix:")
-# print(confusion_matrix(y_test_clf, xgb_clf_pred))
+print("Random Forest Confusion Matrix:")
+print(confusion_matrix(y_test_clf, rf_clf_pred))
+print("XGBoost Confusion Matrix:")
+print(confusion_matrix(y_test_clf, xgb_clf_pred))
 
 # SAVE BEST MODELS 
 with open('model/rf_reg.pkl', 'wb') as f:
@@ -157,7 +155,7 @@ with open('model/rf_reg.pkl', 'wb') as f:
 with open('model/xgb_clf.pkl', 'wb') as f:
     pickle.dump(xgb_clf, f)
 
-# ─── BLOCK 8: TEST ─────────────────────────────────────────────
+# --- BLOCK 8: TEST ---------------------------------------------
 def get_grade(score):
     if score >= 70: return 'A'
     elif score >= 60: return 'B'
@@ -168,10 +166,9 @@ def get_grade(score):
 
 risk_map = {0: 'Low Risk', 1: 'Medium Risk', 2: 'High Risk'}
 
-def predict_student(hours_studied, previous_scores, extracurricular, sleep_hours, course_difficulty, course_unit, ca_score):
+def predict_student(hours_studied, extracurricular, sleep_hours, course_difficulty, course_unit, ca_score):
     sample = pd.DataFrame([{
         'hours_studied': hours_studied,
-        'previous_scores': previous_scores,
         'extracurricular': extracurricular,
         'sleep_hours': sleep_hours,
         'course_difficulty': course_difficulty,
@@ -192,12 +189,12 @@ def predict_student(hours_studied, previous_scores, extracurricular, sleep_hours
 
 # Strong student, easy course
 print("Strong student, easy course:")
-predict_student(10, 85, 0, 8, 1, 3, 80.0)
+predict_student(10, 0, 8, 1, 3, 80.0)
 
 # Average student, medium course
 print("Average student, medium course:")
-predict_student(5, 60, 1, 6, 2, 3, 55.0)
+predict_student(5, 1, 6, 2, 3, 55.0)
 
 # Struggling student, hard course
 print("Struggling student, hard course:")
-predict_student(2, 35, 1, 4, 3, 2, 30.0)
+predict_student(2, 1, 4, 3, 2, 30.0)

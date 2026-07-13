@@ -5,7 +5,6 @@ from typing import Optional, List
 class CourseInput(BaseModel):
     course_name: str
     hours_studied: float
-    previous_scores: float
     extracurricular: int          # 0 or 1
     sleep_hours: float
     course_difficulty: int        # 1, 2, or 3
@@ -44,7 +43,6 @@ class ProfileInput(BaseModel):
 class CourseRecordInput(BaseModel):
     course_name: str
     hours_studied: float
-    previous_scores: float
     extracurricular: int
     sleep_hours: float
     course_difficulty: int

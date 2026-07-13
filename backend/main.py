@@ -55,7 +55,6 @@ def predict_gpa(request: PredictionRequest):
             # Run the prediction pipeline using our helper function
             pred = predict_course_performance(
                 hours_studied=course.hours_studied,
-                previous_scores=course.previous_scores,
                 extracurricular=course.extracurricular,
                 sleep_hours=course.sleep_hours,
                 course_difficulty=course.course_difficulty,
@@ -107,7 +106,6 @@ def predict_whatif(course: CourseInput):
     try:
         pred = predict_course_performance(
             hours_studied=course.hours_studied,
-            previous_scores=course.previous_scores,
             extracurricular=course.extracurricular,
             sleep_hours=course.sleep_hours,
             course_difficulty=course.course_difficulty,
@@ -209,7 +207,7 @@ def save_academic_history(request: SaveHistoryRequest, token: dict = Depends(ver
             "semester": request.semester,
             "course_name": r.course_name,
             "hours_studied": r.hours_studied,
-            "previous_scores": r.previous_scores,
+            "previous_scores": 0.0,
             "extracurricular": r.extracurricular,
             "sleep_hours": r.sleep_hours,
             "course_difficulty": r.course_difficulty,
