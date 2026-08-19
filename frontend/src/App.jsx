@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import './App.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
 function App() {
   // Session & Authentication States
   const [session, setSession] = useState(null);
@@ -294,7 +296,7 @@ function App() {
     setCourses(updatedCourses);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/predict/whatif', {
+      const response = await fetch(`${API_URL}/predict/whatif`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -350,7 +352,7 @@ function App() {
         recommendation: res.recommendation
       }));
 
-      const response = await fetch('http://127.0.0.1:8000/history', {
+      const response = await fetch(`${API_URL}/history`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -386,7 +388,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/predict', {
+      const response = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
