@@ -1,8 +1,10 @@
 fastapi
 uvicorn
 supabase
+httpx
+python-dotenv
+python-jose[cryptography]
 numpy
 pandas
 scikit-learn
 xgboost
-python-dotenv
